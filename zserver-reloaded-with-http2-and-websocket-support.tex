@@ -1,0 +1,78 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+
+% Input
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[letterspace=100]{microtype}
+\usepackage{upquote}
+
+% Beamer
+\usetheme{metropolis}
+\usepackage[sfdefault]{FiraSans}
+\usepackage{xcolor}
+\definecolor{blue}{HTML}{002957}
+\definecolor{red}{HTML}{F1563F}
+\setbeamercolor{palette primary}{fg=white,bg=blue}
+\setbeamercolor{title separator}{fg=red,bg=blue}
+\setbeamercolor{frametitle}{fg=white,bg=blue}
+\setbeamercolor{progress bar}{fg=red,bg=blue}
+\setbeamercolor{alerted text}{fg=red,bg=blue}
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{2pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{2pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{2pt}
+\makeatother
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\DeclareGraphicsExtensions{.png,.pdf,.eps}
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+\usetikzlibrary{arrows, shapes}
+
+% Various
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{fontawesome}
+
+% Title
+\title{ZServer Reloaded with HTTP/2 and WebSocket Support}
+\subtitle{Plone Conference 2019}
+\date{25.10.2019}
+\author{Asko Soukka}
+\institute{\vspace{-0.5cm}\includegraphics[height=1.5cm]{images/jyu-vaaka-kaksikielinen.eps}\hfill\includegraphics[width=0.20\paperwidth]{images/plone-icon.pdf}\raisebox{0.075\paperwidth}{\fontsize{40}{40}\selectfont~+~}\includegraphics[width=0.20\paperwidth]{images/Gatsby_Monogram.eps}}
+
+\newcommand{\setmytemplate}{\usebackgroundtemplate{\begin{picture}(0,0)(-5,250)\footnotesize\href{https://twitter.com/datakurre}{\faTwitter~datakurre}\end{picture}\begin{picture}(0,0)(-330,298)\includegraphics[width=0.40\paperwidth]{images/plone-icon.pdf}\end{picture}}}
+
+\begin{document}
+
+% define tikz styles
+\definecolor{gatsby}{HTML}{663399}
+\tikzstyle{block} = [rectangle, fill=gatsby, text=white,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{example} = [rectangle, draw, dashed,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+
+\setbeamertemplate{background canvas}[default]
+\maketitle
+
+%---------------------------------------------------------------------------------------
+
+\setbeamertemplate{background canvas}[default]
+\begin{frame}[standout]
+\vfill
+\includegraphics[height=0.50\paperheight]{images/plone-icon-hearts.png}
+\par
+\href{https://datakurre.github.io/ploneconf19/}{datakurre.github.io/ploneconf19}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\end{document}

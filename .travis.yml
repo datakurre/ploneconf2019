@@ -1,0 +1,27 @@
+language: nix
+before_install:
+- sudo mkdir -p /etc/nix
+- echo "substituters = https://cache.nixos.org/ https://datakurre.cachix.org/" | sudo
+  tee -a /etc/nix/nix.conf
+- echo "trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+  datakurre.cachix.org-1:ayZJTy5BDd8K4PW9uc9LHV+WCsdi/fu1ETIYZMooK78=" | sudo tee
+  -a /etc/nix/nix.conf
+script: nix-shell --run "make"
+after_success:
+- mkdir build TEXFILE=how-plone-excels-in-gatsbyjs-content-mesh
+- mv how-plone-excels-in-gatsbyjs-content-mesh.pdf build
+- echo '<meta http-equiv="refresh" content= "0;url=how-plone-excels-in-gatsbyjs-content-mesh.pdf"
+  />' > build/index.html
+- touch build/.nojekyll
+deploy:
+  provider: pages
+  github-token: "$GITHUB_TOKEN"
+  local-dir: "./build"
+  target-branch: gh-pages
+  keep-history: false
+  skip-cleanup: true
+  on:
+    branch: master
+env:
+  global:
+    secure: uMxFNhHsRZgug707cicddNeHWZR/Vt1HinKr3Dap504oXoXpH0dwgCCDhUR69rGJpcH6fsQqQtRs3cvBBzN3Ac+eCGQC2ANfcTfQ+A0LWJ02mBSf1XlcCdzGH9KB/4W5UXgiZC1iVbL6FNtlroSKZe7bv0xtAe6rY2gxCDRMQESJwp48WWv9f+cQ9O+z+VpshKrzKZ2NrAfJwjfgII0M39nIAvMDdn0CMuzI067GzzwmxwJ8xKmD4svF65cc+Z0zVig+MOv7MVYTM0AvaREvX7nEXZnBrnz0J6il7oSS279v3YrGDfHcecWp0BxkpJbYOZDDJKPEodngX5mG4iLWfFfIGOkd/QxGtKnGX1olYwoRBevMRBViwPnBUIaVMKJSb2wddPbIwfr+YDzT+LzPIGb/8Pir7WjncpeczTVPgBMcn4UhbslAdWk/tdRvMuFzB9G8tb1rbnXWIMp3DaISVZ0FdGrU9tgyP2iLLKY6LyDH1A9uabQ3VKVvo7JyZ3Endu+DvZ4JwzIZf2Z4rMof7Jn1W01JwuwEOljYCp85ZGzLvSU+jhhEJqQSVR5Z93771j3NFNt7Gm4tHGNCEdr+NfHsXjqW0IaQVXA9RNmqwbNpN4vARKdr2X7KNpozE/YjtXqvdeMGpjY4Nab3XuMLscJ2JJL0xPIAYsPTKtid2Oc=
