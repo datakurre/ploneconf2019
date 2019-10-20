@@ -6,7 +6,8 @@ before_install:
 - echo "trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
   datakurre.cachix.org-1:ayZJTy5BDd8K4PW9uc9LHV+WCsdi/fu1ETIYZMooK78=" | sudo tee
   -a /etc/nix/nix.conf
-script: nix-shell --run "make"
+script:
+- nix-shell --run "make TEXFILE=how-plone-excels-in-gatsbyjs-content-mesh"
 after_success:
 - mkdir build TEXFILE=how-plone-excels-in-gatsbyjs-content-mesh
 - mv how-plone-excels-in-gatsbyjs-content-mesh.pdf build
