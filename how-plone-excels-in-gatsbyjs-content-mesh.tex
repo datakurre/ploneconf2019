@@ -164,31 +164,31 @@
   \small
 
   \node [text badly centered, text width=1.8cm]
-        (d1) {Dislike React};
+        (d1) {React is okay};
   \node [text badly centered, below of=d1, node distance=2.5cm]
         (d1no) {\huge\raisebox{-1.35pt}{\includegraphics[height=0.6\baselineskip]{images/Gatsby_Monogram.eps}}\hspace{-0.84em}\color{red}{\faBan}};
 
   \node [text badly centered, right of=d1, text width=2cm, node distance=3.5cm]
-        (d2) {Private content};
+        (d2) {Content is public};
   \node [text badly centered, below of=d2, node distance=2.5cm]
         (d2no) {\huge\raisebox{-1.35pt}{\includegraphics[height=0.6\baselineskip]{images/Gatsby_Monogram.eps}}\hspace{-0.84em}\color{red}{\faBan}};
 
-  \node [text badly centered, text width=2cm, right of=d2, node distance=3.5cm]
-        (d3) {User-gen. content};
+  \node [text badly centered, text width=2.5cm, right of=d2, node distance=3.8cm]
+        (d3) {Use case is read-only};
   \node [text badly centered, below of=d3, node distance=2.5cm]
         (d3no) {\huge\raisebox{-1.35pt}{\includegraphics[height=0.6\baselineskip]{images/Gatsby_Monogram.eps}}\hspace{-0.84em}\color{red}{\faBan}};
 
-  \node [text badly centered, right of=d3, node distance=3.5cm]
-        (d3yes) {\huge\raisebox{-1.35pt}{~\includegraphics[height=0.6\baselineskip]{images/Gatsby_Monogram.eps}}~\color{green}{\faCheck}};
+  \node [text badly centered, right of=d3, node distance=3.2cm]
+        (d3yes) {\huge\raisebox{-1.35pt}{~\includegraphics[height=0.6\baselineskip]{images/Gatsby_Monogram.eps}}};
 
-  \draw [->] (d1) -- (d2) node[midway] {\color{red}{\faTimes}};
-  \draw [->] (d2) -- (d3) node[midway] {\color{red}{\faTimes}};
-  \draw [->] (d2) -- (d3) node[midway] {\color{red}{\faTimes}};
-  \draw [->] (d3) -- (d3yes) node[midway] {\color{red}{\faTimes}};
+  \draw [->] (d1) -- (d2) node[midway] {\color{green}{\faCheck}};
+  \draw [->] (d2) -- (d3) node[midway] {\color{green}{\faCheck}};
+  \draw [->] (d2) -- (d3) node[midway] {\color{green}{\faCheck}};
+  \draw [->] (d3) -- (d3yes) node[midway] {\color{green}{\faCheck}};
 
-  \draw [->] (d1) -- (d1no) node[midway, left] {\color{green}{\faCheck}};
-  \draw [->] (d2) -- (d2no) node[midway, left] {\color{green}{\faCheck}};
-  \draw [->] (d3) -- (d3no) node[midway, left] {\color{green}{\faCheck}};
+  \draw [->] (d1) -- (d1no) node[midway, left] {\color{red}{\faTimes}};
+  \draw [->] (d2) -- (d2no) node[midway, left] {\color{red}{\faTimes}};
+  \draw [->] (d3) -- (d3no) node[midway, left] {\color{red}{\faTimes}};
 
   \end{tikzpicture}
 \end{frame}
