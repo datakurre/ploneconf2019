@@ -8,11 +8,16 @@ before_install:
   -a /etc/nix/nix.conf
 script:
 - nix-shell --run "make TEXFILE=how-plone-excels-in-gatsbyjs-content-mesh"
+- nix-shell --run "make TEXFILE=zserver-reloaded-with-http2-and-websocket-support"
 after_success:
 - mkdir build TEXFILE=how-plone-excels-in-gatsbyjs-content-mesh
-- mv how-plone-excels-in-gatsbyjs-content-mesh.pdf build
+- mkdir build TEXFILE=zserver-reloaded-with-http2-and-websocket-support
+- mkdir -p build/zserver
+- mv *.pdf build
 - echo '<meta http-equiv="refresh" content= "0;url=how-plone-excels-in-gatsbyjs-content-mesh.pdf"
   />' > build/index.html
+- echo '<meta http-equiv="refresh" content= "0;url=../zserver-reloaded-with-http2-and-websocket-support.pdf"
+  />' > build/zserver/index.html
 - touch build/.nojekyll
 deploy:
   provider: pages

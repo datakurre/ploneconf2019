@@ -46,7 +46,7 @@
 \subtitle{Plone Conference 2019}
 \date{25.10.2019}
 \author{Asko Soukka}
-\institute{\vspace{-0.5cm}\includegraphics[height=1.5cm]{images/jyu-vaaka-kaksikielinen.eps}\hfill\includegraphics[width=0.20\paperwidth]{images/plone-icon.pdf}\raisebox{0.075\paperwidth}{\fontsize{40}{40}\selectfont~+~}\includegraphics[width=0.20\paperwidth]{images/Gatsby_Monogram.eps}}
+\institute{\vspace{-1.5cm}\includegraphics[height=1.5cm]{images/jyu-vaaka-kaksikielinen.eps}\hfill\includegraphics[width=0.20\paperwidth]{images/plone-icon.pdf}\raisebox{0.075\paperwidth}}
 
 \newcommand{\setmytemplate}{\usebackgroundtemplate{\begin{picture}(0,0)(-5,250)\footnotesize\href{https://twitter.com/datakurre}{\faTwitter~datakurre}\end{picture}\begin{picture}(0,0)(-330,298)\includegraphics[width=0.40\paperwidth]{images/plone-icon.pdf}\end{picture}}}
 
@@ -66,11 +66,161 @@
 %---------------------------------------------------------------------------------------
 
 \setbeamertemplate{background canvas}[default]
+\section{Demo}
+
+%---------------------------------------------------------------------------------------
+
+\setbeamertemplate{background canvas}[default]
+\section{Status}
+
+%---------------------------------------------------------------------------------------
+
+\setmytemplate
+\begin{frame}{Drop-in Replacement}
+  \textbf{HTTP and WebDAV}
+  \begin{itemize}
+    \item Twisted HTTP Server
+    \item Twisted thread pool w/ async FileSender
+    \item AsyncIO/uvloop loop when available
+    \item ZConfig configuration and logging
+    \item WSGI ZPublisher request handler
+  \end{itemize}
+  \textbf{HTTP/2}
+  \begin{itemize}
+    \item Twisted Web OpenSSL + H2
+  \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setmytemplate
+\begin{frame}{WebSockets}
+  \textbf{WebSockets with custom PubSub -protocol}
+  \begin{itemize}
+    \item Autobahn Twisted WebSocket protcol
+    \item ZMQ PubSub -socket using IPC-socket
+    \item Connection upgradeable at all paths
+    \item Connection subscribes to events at path
+  \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setmytemplate
+\begin{frame}[fragile]{Publish-Subscribe}
+  \textbf{Client subscribes events}
+  \footnotesize
+  \begin{minted}{JSON}
+{"method": "SUBSCRIBE": "path": "/"}
+  \end{minted}
+  \normalsize
+  \textbf{Client unsubscribes events}
+  \footnotesize
+  \begin{minted}{JSON}
+{"method": "UNSUBSCRIBE": "path": "/"}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Guarded Events}
+  \textbf{Server publishes event with guard}
+  \footnotesize
+  \begin{minted}{JSON}
+{
+  "guards": [{
+    "allowedRolesAndUsers": {
+      "method": "/Plone/@@wsevents-guard",
+      "tokens": ["Editor"],
+    },
+  }],
+  "payload": {}
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Guard Response}
+  \textbf{Server responses guard check once for each subscriber}
+  \footnotesize
+  \begin{minted}{JSON}
+{
+  "allowedRolesAndUsers": {
+    "tokens": ["Reviewer", "Editor"],
+    "expires": 1571723078
+  }
+}
+  \end{minted}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setmytemplate
+\begin{frame}{State of Things}
+  \textbf{\href{https://github.com/datakurre/ZServer/branches/active}{github.com/datakurre/ZServer}}
+  \begin{itemize}
+    \item Rebased on top of the latest ZServer release
+    \item Python 3 syntax update + new code
+    \item Used in GSOC 2019 for \texttt{gatsby-source-plone}
+    \item WebDAV tested manually at PLOG 2019
+    \item Dead code not removed yet and tests are failing\dots
+  \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setbeamertemplate{background canvas}[default]
+\begin{frame}[fragile]{State of Friends}
+  \textbf{Complete experience}
+  \footnotesize
+  \begin{minted}{cfg}
+[sources]
+ZServer = git git@github.com:datakurre/ZServer branch=datakurre/master
+plone.recipe.zope2instance = git git@github.com:plone/plone.recipe.zope2instance
+                             branch=datakurre/zserver
+collective.wsevents = git git@github.com:datakurre/collective.wsevents
+plonectl = git git@github.com:datakurre/plonectl
+  \end{minted}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setbeamertemplate{background canvas}[default]
+\section{Next}
+
+%---------------------------------------------------------------------------------------
+
+\setmytemplate
+\begin{frame}{State of Upstream}
+  \textbf{Zope 4}
+  \begin{itemize}
+    \item WebDAV made dependent on ZServer by mistake
+  \end{itemize}
+  \textbf{Zope 5}
+  \begin{itemize}
+    \item Assumes ZServer to no longer exist
+  \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setmytemplate
+\begin{frame}{Discussion}
+  \textbf{Remaining steps}
+  \begin{itemize}
+    \item Upstream or not?
+    \item Eliminate dead code
+    \item QA (tests, documentation)
+    \item Release
+    \item Merge \texttt{wsgi=off}
+  \end{itemize}
+\end{frame}
+
+%---------------------------------------------------------------------------------------
+
+\setbeamertemplate{background canvas}[default]
 \begin{frame}[standout]
 \vfill
 \includegraphics[height=0.50\paperheight]{images/plone-icon-hearts.png}
 \par
-\href{https://datakurre.github.io/ploneconf19/}{datakurre.github.io/ploneconf19}
+\href{https://datakurre.github.io/ploneconf19/zserver}{datakurre.github.io/ploneconf19/zserver}
 \end{frame}
 
 %---------------------------------------------------------------------------------------
