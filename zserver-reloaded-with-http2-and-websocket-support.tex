@@ -95,12 +95,12 @@
 
 \setmytemplate
 \begin{frame}{WebSockets}
-  \textbf{WebSockets with custom PubSub -protocol}
+  \textbf{WebSockets with PubSub-messaging}
   \begin{itemize}
-    \item Autobahn Twisted WebSocket protcol
-    \item ZMQ PubSub -socket using IPC-socket
+    \item Autobahn Twisted WebSocket protocol
+    \item ZMQ PubSub-socket using IPC-socket
     \item Connection upgradeable at all paths
-    \item Connection subscribes to events at path
+    \item Connection autosubscribes to local events
   \end{itemize}
 \end{frame}
 
@@ -108,7 +108,7 @@
 
 \setmytemplate
 \begin{frame}[fragile]{Publish-Subscribe}
-  \textbf{Client subscribes events}
+  \textbf{Client subscribes to events}
   \footnotesize
   \begin{minted}{JSON}
 {"method": "SUBSCRIBE": "path": "/"}
@@ -122,7 +122,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Guarded Events}
-  \textbf{Server publishes event with guard}
+  \textbf{Server publishes guarded event}
   \footnotesize
   \begin{minted}{JSON}
 {
@@ -138,7 +138,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Guard Response}
-  \textbf{Server responses guard check once for each subscriber}
+  \textbf{Server responses to guard check once for each subscriber}
   \footnotesize
   \begin{minted}{JSON}
 {
@@ -177,6 +177,8 @@ plone.recipe.zope2instance = git git@github.com:plone/plone.recipe.zope2instance
                              branch=datakurre/zserver
 collective.wsevents = git git@github.com:datakurre/collective.wsevents
 plonectl = git git@github.com:datakurre/plonectl
+collective.taskueue = git git@github.com:collective/collective.taskqueue
+                      branch=python3_compatibility
   \end{minted}
 \end{frame}
 
@@ -191,11 +193,11 @@ plonectl = git git@github.com:datakurre/plonectl
 \begin{frame}{State of Upstream}
   \textbf{Zope 4}
   \begin{itemize}
-    \item WebDAV made dependent on ZServer by mistake
+    \item WebDAV made dependent on ZServer (by mistake?)
   \end{itemize}
   \textbf{Zope 5}
   \begin{itemize}
-    \item Assumes ZServer to no longer exist
+    \item Assumes ZServer (and WebDAV?) to no longer exist
   \end{itemize}
 \end{frame}
 
@@ -207,9 +209,9 @@ plonectl = git git@github.com:datakurre/plonectl
   \begin{itemize}
     \item Upstream or not?
     \item Eliminate dead code
-    \item QA (tests, documentation)
+    \item QA (tests, documentation, \dots)
     \item Release
-    \item Merge \texttt{wsgi=off}
+    \item Restore \texttt{wsgi=off} on Python 3
   \end{itemize}
 \end{frame}
 
