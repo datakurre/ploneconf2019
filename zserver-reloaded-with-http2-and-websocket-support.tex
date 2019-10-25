@@ -129,8 +129,8 @@
   "guards": [{
     "allowedRolesAndUsers": {
       "method": "/Plone/@@wsevents-guard",
-      "tokens": ["Editor"],
-    },
+      "tokens": ["Editor"]
+    }
   }],
   "payload": {}
 }
@@ -177,8 +177,9 @@ plone.recipe.zope2instance = git git@github.com:plone/plone.recipe.zope2instance
                              branch=datakurre/zserver
 collective.wsevents = git git@github.com:datakurre/collective.wsevents
 
+# Optional pip-installable control scripts:
 plonectl = git git@github.com:datakurre/plonectl
-
+# Optional collective.taskqueue upgrade branch:
 collective.taskqueue = git git@github.com:collective/collective.taskqueue
                        branch=python3_compatibility
   \end{minted}
